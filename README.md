@@ -30,6 +30,23 @@ We use several datasets:<br>
   3. K-Nearest Neighbor
 * To check similarity between text, we use cosine similarity metric
 
+## DUAL-INPUT (RIASEC + TEXT) MODE
+This repo includes a dual-output implementation that runs two recommendation paths in parallel and returns two separate result sets:
+* **RIASEC code matching**: pure code-to-category matching against the dataset (no vector calculations).
+* **Text vector search**: TF-IDF (default) or CountVectorizer cosine similarity search over the dataset text.
+
+Run from the project root:
+```
+python3 -m venv .venv
+source .venv/bin/activate
+python dual_search.py --riasec RIA --text "I enjoy analyzing data and building predictive models" --top-k 10 --method tfidf
+```
+
+JSON output (for programmatic comparison):
+```
+python dual_search.py --riasec RIA --text "..." --top-k 10 --json
+```
+
 ## DEPLOYMENT
 You can try this job recommendation at:<br>
 https://share.streamlit.io/agnes-septilia/streamlitapps/main/JobRecommendationRiasecPersonality.py
